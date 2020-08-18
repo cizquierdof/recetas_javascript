@@ -20,8 +20,8 @@ const secretKey = 'dsjabnbakdq3eelknadoiaJKNAAL'
 //console.log('salt', bcrypt.genSaltSync(40));
 const salt = '$2b$10$pbrOdfO5Vr1pV7nHwZyaLu'; //¡Ojo! los salt no deben contener '/' porque lo toma como escape
 
-const hashedPasssword = bcrypt.hashSync('1234',salt);
-console.log('1234',hashedPasssword);
+const hashedPasssword = bcrypt.hashSync('1234', salt);
+console.log('1234', hashedPasssword);
 
 const app = express();
 
@@ -49,7 +49,7 @@ app.post('/login', (req, res) => {
     // los comprobamos 'a pelo'
     //¡Ojo! de nuevo repito que lo que guardaríamos en la base de datos no es el password sino un hash
     // y lo que nos envian también es un hash
-    if (userPass.user === 'carlos' && bcrypt.hashSync(userPass.password, salt)  === hashedPasssword) {
+    if (userPass.user === 'carlos' && bcrypt.hashSync(userPass.password, salt) === hashedPasssword) {
         //generamos el token que vamos a devolver cuando la auenticación es correcta
         //necesitamos pasarle el payload que irá codificado y que luego podremos recuperar y la semilla. También es importante
         //pasarle una caducidad, porque si no, el mismo token serviría para siempre y esto es muy inseguro
@@ -82,13 +82,13 @@ app.get('/private', (req, res) => {
     const token = auth.split(' ')[1];
     //ya podemos verificar el token mediante la secretKey. jwt.verify() se le pasa una función de callback donde poder
     //indicar que se hace en caso de error y con los resultados
-    jwt.verify(token, secretKey, (err, user)=>{
-        if(err){
-            return res.status(403).jsonp({msg:'Usuario no autorizado'})
-        }else{
+    jwt.verify(token, secretKey, (err, user) => {
+        if (err) {
+            return res.status(403).jsonp({ msg: 'Usuario no autorizado' })
+        } else {
             console.log('usuario', user);
         }
-    }); 
+    });
     return res.status(200).jsonp({ msg: 'Esta es un área privada' })
 
 });
@@ -96,7 +96,7 @@ app.get('/private', (req, res) => {
 /*********************
  * Otro endpoint que requiere autorización, esta vez utilizamos un middleware
  */
-app.get('/private-mw', authmw, (req, res)=>{
+app.get('/private-mw', authmw, (req, res) => {
     return res.status(200).jsonp({ msg: 'Esta es un área privada, autorizada con middleware' })
 
 })

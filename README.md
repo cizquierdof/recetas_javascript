@@ -15,4 +15,4 @@ Siete métodos avanzados para manjar arrays:
 
 ## 02 api rest con mongo y express
 
-implementación básica de una api rest con mongo express acediendo a base de datos mongo y autenticación con jasowebtoken.
+implementación básica de una api rest con mongo express acediendo a base de datos mongo y autenticación con jsonwebtoken.

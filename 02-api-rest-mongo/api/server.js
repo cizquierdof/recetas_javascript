@@ -1,5 +1,5 @@
 const app = require('./app');
-const db = require('mongoose'); 
+const db = require('mongoose');
 
 
 db.connect('mongodb://localhost:27017/agenda').then(

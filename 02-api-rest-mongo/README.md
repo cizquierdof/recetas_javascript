@@ -8,5 +8,5 @@ Base para una api rest con node express y bbdd mongo
 - mongo (en docker)
 - nodemon (para desarrollo, debería estar ya instalado)
 - mongoose
-- jsonwebtoken 
+- jsonwebtoken
 - bcrypt
